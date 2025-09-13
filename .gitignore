@@ -1,0 +1,6 @@
+
+.git/
+.idea/
+.DS_Store
+venv2
+venv3
