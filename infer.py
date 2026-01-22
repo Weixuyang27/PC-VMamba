@@ -5,11 +5,11 @@ from models.other_models import UNet, TransUNet, SwinUNet, LocalMamba, LocalVisi
 from models.PCViM import LCVMUNet
 from configs.model_configs import model_configs
 
-from engine_isic2017 import *
+from engine import *
 import sys
 
 from utils import *
-from configs.config_setting_isic17 import setting_config
+from configs.config_setting import setting_config
 
 import warnings
 
