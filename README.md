@@ -6,7 +6,7 @@
   -model_configs.py 其他模型实验相关的配置  
 #### 2.datasets 数据集及相关处理
   -datasets.py
-#### 3.models 模型结构
+#### 3.models 本模型结构
   -Mamba  
     -PCM  
     -Rope  
