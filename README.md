@@ -14,7 +14,7 @@
   -pc.py  
   -PCViM.py  
 #### 4.engine.py 模型训练验证的流程
-#### 5.scorecam.py 可解释性分析
+#### 5.heatmap.py 可解释性分析
 #### 6.infer.py 预测
 #### 7.train.py 训练
 #### 8.utils.py 工具类
