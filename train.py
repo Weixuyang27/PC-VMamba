@@ -8,7 +8,7 @@ from engine import *
 import sys
 
 from utils import *
-from configs.config_setting_isic17 import setting_config
+from configs.config_setting import setting_config
 
 import warnings
 
