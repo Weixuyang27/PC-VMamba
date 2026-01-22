@@ -49,7 +49,7 @@ def main(config):
                             drop_last=True)
 
     print('#----------Preparing Model----------#')
-    if config.network == 'CCViM_isic2017':
+    if config.network == 'PCVMamba_isic2017':
         model_cfg = config.model_config
         model = LCVMUNet(
             num_classes=model_cfg['num_classes'],
