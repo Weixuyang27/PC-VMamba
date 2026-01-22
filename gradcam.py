@@ -393,7 +393,7 @@ if __name__ == '__main__':
         model = LocalMamba(**model_cfg)
     elif config.network == 'localvisionmamba':
         model = LocalVisionMamba(**model_cfg)
-    elif config.network == 'CCViM_isic2017':
+    elif config.network == PC-Vamba':
         # 延迟导入，避免不必要的依赖
         from models.PCViM import LCVMUNet
         model_cfg_full = config.model_config
@@ -428,8 +428,8 @@ if __name__ == '__main__':
     
     # 3. 加载单张图像
     print(f"\n[3/4] 加载图像...")
-    image_path = "/Users/xuyang_wei/Documents/isic2017/train/images/ISIC_0010598.jpg"
-    mask_path = "/Users/xuyang_wei/Documents/isic2017/train/masks/ISIC_0010598_segmentation.png"
+    image_path = "/Users/Documents/ISIC.jpg"
+    mask_path = "/Users/Documents/ISIC_segmentation.png"
     
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"图像文件不存在: {image_path}")
