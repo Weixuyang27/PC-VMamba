@@ -15,20 +15,13 @@ from scipy.ndimage import zoom
 import SimpleITK as sitk
 from medpy import metric
 
-
-def set_seed(seed):
-    # for hash
-    os.environ['PYTHONHASHSEED'] = str(seed)
-    # for python and numpy
+def set_seed(seed=42):
     random.seed(seed)
     np.random.seed(seed)
-    # for cpu gpu
     torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
-    # for cudnn
-    cudnn.benchmark = False
-    cudnn.deterministic = True
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 
 def get_logger(name, log_dir):
