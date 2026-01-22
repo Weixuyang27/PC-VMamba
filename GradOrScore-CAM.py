@@ -14,7 +14,7 @@ from torchvision import transforms as T
 
 # 导入项目模块
 from datasets.datasets import NPY_datasets
-from configs.config_setting_isic17 import setting_config
+from configs.config_setting import setting_config
 from configs.model_configs import model_configs
 from models.other_models import UNet, TransUNet, SwinUNet, LocalMamba, LocalVisionMamba
 # 延迟导入LCVMUNet，避免不必要的依赖
