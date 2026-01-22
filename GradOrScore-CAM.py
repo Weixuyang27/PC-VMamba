@@ -1,5 +1,4 @@
 """
-Grad-CAM 热力图生成示例代码
 用于生成模型关注区域的可视化热力图，验证医学分割模型的医学相关性
 """
 
@@ -243,14 +242,14 @@ class GradCAM:
         )
         
         cam_np = cam.squeeze(1).cpu().detach().numpy()  # (B, H, W)
-        print(f"最终CAM形状: {cam_np.shape}, 值域: [{cam_np.min():.4f}, {cam_np.max():.4f}]")
+        print(f"最终形状: {cam_np.shape}, 值域: [{cam_np.min():.4f}, {cam_np.max():.4f}]")
         
         return cam_np
 
 
 def overlay_gradcam_on_image(image_tensor, cam_map, alpha=0.5):
     """
-    将Grad-CAM热力图叠加到原图上
+    将热力图叠加到原图上
     
     Args:
         image_tensor: 图像张量 (C, H, W)，值域可以是[0, 1]或[0, 255]
@@ -284,7 +283,7 @@ def overlay_gradcam_on_image(image_tensor, cam_map, alpha=0.5):
 
 def save_gradcam_visualization(image_tensor, cam_map, save_path, alpha=0.5):
     """
-    保存Grad-CAM可视化结果
+    保存可视化结果
     
     Args:
         image_tensor: 图像张量 (C, H, W)
@@ -300,12 +299,12 @@ def save_gradcam_visualization(image_tensor, cam_map, save_path, alpha=0.5):
     pil_img = Image.fromarray(overlay_img)
     pil_img.save(save_path)
     
-    print(f"Grad-CAM可视化已保存到: {save_path}")
+    print(f"可视化已保存到: {save_path}")
 
 
 def generate_gradcam_for_batch(model, dataloader, save_dir, num_samples=10):
     """
-    为数据加载器中的样本生成Grad-CAM热力图
+    为数据加载器中的样本生成热力图
     
     Args:
         model: 训练好的模型
@@ -318,7 +317,7 @@ def generate_gradcam_for_batch(model, dataloader, save_dir, num_samples=10):
     os.makedirs(os.path.join(save_dir, 'heatmaps'), exist_ok=True)
     os.makedirs(os.path.join(save_dir, 'overlays'), exist_ok=True)
     
-    # 初始化Grad-CAM
+    # 初始化
     grad_cam = GradCAM(model)
     
     count = 0
@@ -352,16 +351,11 @@ def generate_gradcam_for_batch(model, dataloader, save_dir, num_samples=10):
         count += 1
         print(f"已处理 {count}/{num_samples} 个样本")
     
-    print(f"Grad-CAM生成完成！结果保存在: {save_dir}")
+    print(f"生成完成！结果保存在: {save_dir}")
 
 
 # ========== 主程序 ==========
 if __name__ == '__main__':
-    """
-    直接运行此脚本生成Grad-CAM热力图
-    使用指定的模型权重和验证集数据
-    """
-    
     # 配置参数
     config = setting_config
     weight_path = "/Users/xuyang_wei/PycharmProjects/PC-ViM-Code/configs/pre_trained_weights/best-epoch96-loss0.0925.pth"
@@ -462,7 +456,7 @@ if __name__ == '__main__':
     print(f"图像尺寸: {img_batch.shape}")
     print(f"Mask尺寸: {mask_batch.shape}")
     
-    # 4. 生成Grad-CAM
+    # 4. 生成Grad-CAM/Score-CAM
     print(f"\n[4/4] 生成Grad-CAM热力图...")
     os.makedirs(save_dir, exist_ok=True)
     os.makedirs(os.path.join(save_dir, 'heatmaps'), exist_ok=True)
@@ -502,7 +496,7 @@ if __name__ == '__main__':
     print(f"  叠加图已保存: {save_overlay_path}")
     
     print("\n" + "=" * 50)
-    print(f"Grad-CAM生成完成！")
+    print(f"生成完成！")
     print(f"结果保存在: {save_dir}")
     print(f"  - 热力图: {save_dir}/heatmaps/")
     print(f"  - 叠加图: {save_dir}/overlays/")
